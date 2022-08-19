@@ -1,12 +1,34 @@
 package authservice
 
+import (
+	"context"
+	"errors"
+	"myclass/src/models"
+)
+
 type iRepository interface {
 }
 
 type service struct {
-	repository iRepository
+	repository  iRepository
+	userService iUserService
 }
 
-func NewService(repository iRepository) *service {
-	return &service{repository: repository}
+type iUserService interface {
+	Create(ctx context.Context, user *models.User) error
+}
+
+func New() *service {
+	return &service{}
+}
+
+func (s *service) SetUserService(service iUserService) {
+	s.userService = service
+}
+
+func (s *service) CheckHealth() error {
+	if s.userService == nil {
+		return errors.New("user servive not defined in auth")
+	}
+	return nil
 }

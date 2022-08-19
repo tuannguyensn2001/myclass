@@ -1,9 +1,10 @@
 package config
 
 import (
-	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/spf13/viper"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 	enumconfig "myclass/src/enums/config"
 	"os"
 )
@@ -16,7 +17,7 @@ type structure struct {
 	Postgres struct {
 		Url string `mapstructure:"url"`
 	} `mapstructure:"postgres"`
-	Db *sqlx.DB
+	Db *gorm.DB
 }
 
 var cfg structure
@@ -46,7 +47,7 @@ func Load() error {
 		return err
 	}
 
-	db, err := sqlx.Connect("postgres", cfg.Postgres.Url)
+	db, err := gorm.Open(postgres.Open(cfg.Postgres.Url), &gorm.Config{})
 	if err != nil {
 		return err
 	}

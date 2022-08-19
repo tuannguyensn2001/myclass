@@ -3,9 +3,13 @@ package cmd
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
+	"log"
 	"myclass/src/config"
 	enumconfig "myclass/src/enums/config"
+	"myclass/src/services/auth/authprovider"
 )
+
+type Provider = func(r *gin.Engine) error
 
 func server() *cobra.Command {
 	return &cobra.Command{
@@ -19,6 +23,15 @@ func server() *cobra.Command {
 			}
 
 			r := gin.Default()
+
+			providers := []Provider{authprovider.Boot}
+
+			for _, item := range providers {
+				err := item(r)
+				if err != nil {
+					log.Fatalln(err)
+				}
+			}
 
 			r.Run(":" + cfg.Server.Port)
 		},

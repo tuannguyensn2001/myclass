@@ -16,17 +16,10 @@ func New() *repository {
 func (r *repository) Insert(ctx context.Context, user *models.User) error {
 	db := baserepository.GetDBFromContext(ctx)
 
-	result, err := db.NamedExec(`insert into users (email,username,password,created_at, updated_at) values (:email,:username,:password,:created_at,:updated_at)`, user)
+	err := db.Create(user).Error
 	if err != nil {
 		return err
 	}
-
-	id, err := result.LastInsertId()
-	if err != nil {
-		return err
-	}
-
-	user.Id = int(id)
 
 	return nil
 

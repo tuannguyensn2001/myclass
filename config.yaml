@@ -3,4 +3,4 @@ server:
   mode: development
 
 postgres:
-  url: postgresql://postgres:secret@localhost:5432/myclass?sslmode=disable
+  url: postgresql://postgres:postgres@localhost:5432/myclass?sslmode=disable
