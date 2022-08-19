@@ -12,3 +12,6 @@ migrate-down:
 
 migrate-refresh:
 	@go run src/server/main.go migrate-refresh
+
+gen-error:
+	@go run src/server/main.go gen-error

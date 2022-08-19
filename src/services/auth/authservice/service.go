@@ -16,6 +16,7 @@ type service struct {
 
 type iUserService interface {
 	Create(ctx context.Context, user *models.User) error
+	CheckUserExistedByEmail(ctx context.Context, email string) bool
 }
 
 func New() *service {

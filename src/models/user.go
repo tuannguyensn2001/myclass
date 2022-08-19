@@ -7,7 +7,7 @@ import (
 
 type User struct {
 	Id        int            `db:"id" gorm:"column:id;" json:"id"`
-	Username  string         `db:"username" gorm:"column:username;" json:"username"`
+	Username  string         `db:"username" gorm:"column:username;" json:"username" validate:"required,max=10"`
 	Password  string         `db:"password" gorm:"column:password;" json:"password"`
 	Email     string         `db:"email" gorm:"column:email;" json:"email"`
 	CreatedAt time.Time      `db:"created_at" gorm:"column:created_at;"  json:"createdAt"`

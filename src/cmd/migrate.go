@@ -14,7 +14,7 @@ func migrateUp() *cobra.Command {
 	return &cobra.Command{
 		Use: "migrate",
 		Run: func(cmd *cobra.Command, args []string) {
-			db := config.GetConfig().Db.DB
+			db, _ := config.GetConfig().Db.DB()
 
 			driver, err := postgres.WithInstance(db, &postgres.Config{})
 			if err != nil {
@@ -45,7 +45,7 @@ func migrateDown() *cobra.Command {
 	return &cobra.Command{
 		Use: "migrate-down",
 		Run: func(cmd *cobra.Command, args []string) {
-			db := config.GetConfig().Db.DB
+			db, _ := config.GetConfig().Db.DB()
 
 			driver, err := postgres.WithInstance(db, &postgres.Config{})
 			if err != nil {
@@ -76,7 +76,7 @@ func migrateRefresh() *cobra.Command {
 	return &cobra.Command{
 		Use: "migrate-refresh",
 		Run: func(cmd *cobra.Command, args []string) {
-			db := config.GetConfig().Db.DB
+			db, _ := config.GetConfig().Db.DB()
 
 			driver, err := postgres.WithInstance(db, &postgres.Config{})
 			if err != nil {

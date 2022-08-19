@@ -1,0 +1,24 @@
+general:
+    badRequest:
+        code: 1
+        message: bad request
+        statusCode: 400
+    notFound:
+        code: 2
+        message: not found
+        statusCode: 404
+    forbidden:
+        code: 3
+        message: forbidden
+        statusCode: 403
+    
+auth:
+    username_required:
+        code: 4
+        message: ten dang nhap khong duoc de trong
+        statusCode: 400
+    username_max_10:
+        code: 5
+        message: ten dang nhap khong duoc phep qua 10 ky tu
+        statusCode: 400
+    

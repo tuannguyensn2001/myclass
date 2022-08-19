@@ -11,7 +11,7 @@ func (r *repository) FindByEmail(ctx context.Context, email string) (*models.Use
 
 	var result models.User
 
-	err := db.Where("email = ?", email).First(&result).Error
+	err := db.Select("id", "username", "email", "password", "created_at", "updated_at").Where("email = ?", email).First(&result).Error
 	if err != nil {
 		return nil, err
 	}
