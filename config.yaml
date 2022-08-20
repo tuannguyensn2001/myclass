@@ -1,6 +1,0 @@
-server:
-  port: 11000
-  mode: development
-
-postgres:
-  url: postgresql://postgres:postgres@localhost:5432/myclass?sslmode=disable
