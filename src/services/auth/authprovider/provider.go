@@ -21,7 +21,7 @@ func Boot(r *gin.Engine) error {
 		return err
 	}
 
-	transport := authtransport.NewHttpTransport(userService)
+	transport := authtransport.NewHttpTransport(service)
 
 	r.POST("/api/v1/auth/register", transport.Register)
 

@@ -6,6 +6,7 @@ import (
 	"log"
 	"myclass/src/config"
 	enumconfig "myclass/src/enums/config"
+	"myclass/src/middlewares"
 	"myclass/src/services/auth/authprovider"
 )
 
@@ -23,6 +24,8 @@ func server() *cobra.Command {
 			}
 
 			r := gin.Default()
+
+			r.Use(middlewares.Recover)
 
 			providers := []Provider{authprovider.Boot}
 

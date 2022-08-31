@@ -15,5 +15,5 @@ type service struct {
 }
 
 func New(repository iRepository) *service {
-	return &service{}
+	return &service{repository: repository}
 }

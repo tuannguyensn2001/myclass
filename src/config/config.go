@@ -5,6 +5,7 @@ import (
 	"github.com/spf13/viper"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 	enumconfig "myclass/src/enums/config"
 	"os"
 )
@@ -47,7 +48,9 @@ func Load() error {
 		return err
 	}
 
-	db, err := gorm.Open(postgres.Open(cfg.Postgres.Url), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(cfg.Postgres.Url), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Silent),
+	})
 	if err != nil {
 		return err
 	}
